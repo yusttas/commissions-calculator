@@ -22,10 +22,10 @@ class CommissionCalculator
         $operation_name = $operation->getName();
 
         switch ($operation->getName()) {
-            case 'cash_in':
+            case Operation::CASH_IN:
                 $strategy = new CashInStrategy($operation, $this->repository);
                 break;
-            case 'cash_out':
+            case Operation::CASH_OUT:
                 $strategy = new CashOutStrategy($operation, $this->repository);
                 break;
             default:

@@ -31,7 +31,7 @@ class InMemoryOperationRepository implements OperationRepository
             $operation_date = new \DateTime($operation->getDate());
             $operation_week = $operation_date->format('W');
 
-            if ($operation->getPersonId() == $person_id && $operation->getName() == 'cash_out') {
+            if ($operation->getPersonId() == $person_id && $operation->getName() == Operation::CASH_OUT) {
 
                 if ($current_week == $operation_week) {
                     $operations[] = $operation;
