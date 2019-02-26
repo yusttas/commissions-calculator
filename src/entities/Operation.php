@@ -11,6 +11,8 @@ class Operation
     private $person_type;
     private $amount;
     private $currency;
+    const CASH_OUT = 'cash_out';
+    const CASH_IN = 'cash_in';
 
     public function setId(int $id)
     {
