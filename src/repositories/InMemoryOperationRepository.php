@@ -5,7 +5,7 @@ namespace Paysera\Repositories;
 use Paysera\Entities\Operation;
 use Paysera\Persistance\Persistance;
 
-class OperationRepository implements Repository
+class InMemoryOperationRepository implements Repository
 {
     /**
      * @var Singleton
