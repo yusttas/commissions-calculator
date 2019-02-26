@@ -44,7 +44,7 @@ class CashOutStrategy implements CommissionCalculatorStrategy
 
         $current_amount = CurrencyConverter::convertToEur($this->operation->getAmount(), $this->operation->getCurrency());
 
-        $person_operations = $this->repository->getPersonOperationsSameWeek($person_id, $current_date);
+        $person_operations = $this->repository->getPersonCashOutOperationsFromSameWeek($person_id, $current_date);
 
         $times_per_week = 0;
         $amount_per_week = 0;
