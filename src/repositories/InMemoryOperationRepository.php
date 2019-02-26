@@ -7,18 +7,16 @@ use Paysera\Persistance\Persistance;
 
 class InMemoryOperationRepository implements OperationRepository
 {
-    private $persistance;
+    protected $operations;
 
-    public function __construct(Persistance $persistance)
+    public function add(Operation $operation)
     {
-        $this->persistance = $persistance;
+        $this->operations[] = $operation;
     }
 
-    public function getAll(): array
+    public function getAll():array
     {
-        $result = $this->buildCollection($this->persistance->getAll());
-
-        return $result;
+        return $this->operations;
     }
 
     public function getPersonOperationsSameWeek(int $person_id, $date): array
@@ -28,12 +26,12 @@ class InMemoryOperationRepository implements OperationRepository
         $current_date = new \DateTime($date);
         $current_week = $current_date->format('W');
 
-        foreach ($this->persistance->getAll() as $operation) {
+        foreach ($this->operations as $operation) {
 
             $operation_date = new \DateTime($operation['date']);
             $operation_week = $operation_date->format('W');
 
-            if ($operation['person_id'] == $person_id && $operation['name'] == 'cash_out') {
+            if ($operation->getPersonId() == $person_id && $operation->getName == 'cash_out') {
 
                 if ($current_week == $operation_week) {
                     $operations[] = $operation;
@@ -43,38 +41,6 @@ class InMemoryOperationRepository implements OperationRepository
             }
         }
 
-        return $this->buildCollection($operations);
-    }
-
-    public function persist(Operation $operation)
-    {
-        $this->persistance->persist([
-            'id' => $operation->getId(),
-            'date' => $operation->getDate(),
-            'person_id' => $operation->getPersonId(),
-            'person_type' => $operation->getPersonType(),
-            'name' => $operation->getName(),
-            'amount' => $operation->getAmount(),
-            'currency' => $operation->getCurrency(),
-        ]);
-    }
-
-    public function buildCollection($data): array
-    {
-        $collection = [];
-        foreach ($data as $row) {
-            $operation = new Operation();
-            $operation->setId($row['id']);
-            $operation->setName($row['name']);
-            $operation->setDate($row['date']);
-            $operation->setPersonId($row['person_id']);
-            $operation->setPersonType($row['person_type']);
-            $operation->setCurrency($row['currency']);
-            $operation->setAmount($row['amount']);
-
-            $collection[] = $operation;
-        }
-
-        return $collection;
+        return $operations;
     }
 }
