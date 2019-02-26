@@ -7,10 +7,6 @@ use Paysera\Persistance\Persistance;
 
 class InMemoryOperationRepository implements Repository
 {
-    /**
-     * @var Singleton
-     */
-    private static $instance;
     private $persistance;
 
     public function __construct(Persistance $persistance)
