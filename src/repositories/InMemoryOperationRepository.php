@@ -19,7 +19,7 @@ class InMemoryOperationRepository implements OperationRepository
         return $this->operations;
     }
 
-    public function getPersonOperationsSameWeek(int $person_id, $date): array
+    public function getPersonCashOutOperationsFromSameWeek(int $person_id, $date): array
     {
         $operations = [];
 
