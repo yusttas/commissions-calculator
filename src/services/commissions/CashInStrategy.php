@@ -2,7 +2,7 @@
 
 namespace Paysera\Services\Commissions;
 
-use Paysera\Repositories\Repository;
+use Paysera\Repositories\OperationRepository;
 use Paysera\Entities\Operation;
 
 class CashInStrategy implements CommissionCalculatorStrategy
@@ -12,7 +12,7 @@ class CashInStrategy implements CommissionCalculatorStrategy
     public $commission_percent = 0.03;
     public $commission_max = 5;
 
-    public function __construct(Operation $operation, Repository $repository)
+    public function __construct(Operation $operation, OperationRepository $repository)
     {
         $this->operation = $operation;
     }

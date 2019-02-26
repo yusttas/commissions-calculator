@@ -3,7 +3,7 @@
 namespace Paysera\Services\Commissions;
 
 use Paysera\Entities\Operation;
-use Paysera\Repositories\Repository;
+use Paysera\Repositories\OperationRepository;
 use Paysera\Services\Commissions\CommissionCalculatorStrategy;
 use Paysera\Services\CurrencyConverter;
 
@@ -17,7 +17,7 @@ class CashOutStrategy implements CommissionCalculatorStrategy
     public $times_per_week = 3;
     public $amount_per_week = 1000;
 
-    public function __construct(Operation $operation, Repository $repository)
+    public function __construct(Operation $operation, OperationRepository $repository)
     {
         $this->operation = $operation;
         $this->repository = $repository;

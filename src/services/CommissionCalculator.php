@@ -3,7 +3,7 @@
 namespace Paysera\Services;
 
 use Paysera\Entities\Operation;
-use Paysera\Repositories\Repository;
+use Paysera\Repositories\OperationRepository;
 use Paysera\Services\Commissions\CashInStrategy;
 use Paysera\Services\Commissions\CashOutStrategy;
 use Paysera\Services\Commissions\CommissionCalculatorStrategy;
@@ -12,21 +12,9 @@ class CommissionCalculator
 {
     protected $operations;
 
-    public function __construct(Repository $repository)
+    public function __construct(OperationRepository $repository)
     {
         $this->repository = $repository;
-    }
-
-    public function addOperation(Operation $operation)
-    {
-        $this->operations[] = $operation;
-    }
-
-    public function addOperations(array $operations)
-    {
-        foreach ($operations as $operation) {
-            $this->addOperation($operation);
-        }
     }
 
     protected function getStrategy(Operation $operation): CommissionCalculatorStrategy
@@ -51,7 +39,7 @@ class CommissionCalculator
     public function calculate(): array
     {
         $results = [];
-        foreach ($this->operations as $operation) {
+        foreach ($this->repository->getAll() as $operation) {
 
             $calculator = $this->getStrategy($operation);
 

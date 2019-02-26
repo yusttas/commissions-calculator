@@ -4,14 +4,14 @@ require_once 'vendor/autoload.php';
 
 use Paysera\Entities\Operation;
 use Paysera\Persistance\InMemoryPersistance;
-use Paysera\Repositories\OperationRepository;
+use Paysera\Repositories\InMemoryOperationRepository as OperationRepository;
 use Paysera\Services\CommissionCalculator;
 use Paysera\Services\Readers\CsvReader;
 
 //$path=trim(fgets(STDIN)); arba $argv[1];
 $path = 'input.csv';
 
-$repository = new OperationRepository(new InMemoryPersistance());
+$repository = new OperationRepository();
 
 $reader = new CsvReader($path);
 $data = $reader->getData();
@@ -26,14 +26,11 @@ foreach ($data as $row) {
     $operation->setName($row[3]);
     $operation->setAmount($row[4]);
     $operation->setCurrency($row[5]);
-    $repository->persist($operation);
+
+    $repository->add($operation);
 }
 
-$operations = $repository->getAll();
-
 $calculator = new CommissionCalculator($repository);
-
-$calculator->addOperations($operations);
 $results = $calculator->calculate();
 
 foreach ($results as $result) {

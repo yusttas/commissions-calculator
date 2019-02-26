@@ -3,7 +3,7 @@
 namespace Paysera\Repositories;
 
 use Paysera\Entities\Operation;
-use Paysera\Persistance\Persistance;
+use Paysera\Repositories\OperationRepository;
 
 class InMemoryOperationRepository implements OperationRepository
 {
@@ -14,7 +14,7 @@ class InMemoryOperationRepository implements OperationRepository
         $this->operations[] = $operation;
     }
 
-    public function getAll():array
+    public function getAll(): array
     {
         return $this->operations;
     }
@@ -28,10 +28,10 @@ class InMemoryOperationRepository implements OperationRepository
 
         foreach ($this->operations as $operation) {
 
-            $operation_date = new \DateTime($operation['date']);
+            $operation_date = new \DateTime($operation->getDate());
             $operation_week = $operation_date->format('W');
 
-            if ($operation->getPersonId() == $person_id && $operation->getName == 'cash_out') {
+            if ($operation->getPersonId() == $person_id && $operation->getName() == 'cash_out') {
 
                 if ($current_week == $operation_week) {
                     $operations[] = $operation;
