@@ -12,10 +12,10 @@ class CashOutStrategy implements CommissionCalculatorStrategy
     protected $operation;
     protected $repository;
 
-    public $commission_percent = 0.3;
-    public $commission_min_legal = 0.50;
-    public $times_per_week = 3;
-    public $amount_per_week = 1000;
+    const COMMISSION_PERCENT = 0.3;
+    const COMMISSION_MIN_LEGAL = 0.50;
+    const TIMES_PER_WEEK = 3;
+    const AMOUNT_PER_WEEK = 1000;
 
     public function __construct(Operation $operation, OperationRepository $repository)
     {
@@ -52,11 +52,11 @@ class CashOutStrategy implements CommissionCalculatorStrategy
 
         foreach ($person_operations as $operation) {
             $times_per_week++;
-            if ($times_per_week <= $this->times_per_week) {
+            if ($times_per_week <= self::TIMES_PER_WEEK) {
                 $amount_per_week += CurrencyConverter::convertToEur($operation->getAmount(), $operation->getCurrency());
             }
 
-            if ($amount_per_week >= $this->amount_per_week) {
+            if ($amount_per_week >= self::AMOUNT_PER_WEEK) {
                 $discount_id = $operation->getId();
                 break;
             }
@@ -65,14 +65,14 @@ class CashOutStrategy implements CommissionCalculatorStrategy
         if (!empty($discount_id)) {
 
             if ($id == $discount_id) {
-                $current_amount = $amount_per_week - $this->amount_per_week;
+                $current_amount = $amount_per_week - self::AMOUNT_PER_WEEK;
             } else if ($id < $discount_id) {
                 $current_amount = 0;
             }
 
         }
 
-        $commission = $current_amount * $this->commission_percent / 100;
+        $commission = $current_amount * self::COMMISSION_PERCENT / 100;
 
         $converted = CurrencyConverter::convertEur($commission, $this->operation->getCurrency());
 
@@ -81,10 +81,10 @@ class CashOutStrategy implements CommissionCalculatorStrategy
 
     protected function calculateForLegalPerson(): float
     {
-        $amount = $this->operation->getAmount() * $this->commission_percent / 100;
+        $amount = $this->operation->getAmount() * self::COMMISSION_PERCENT / 100;
 
-        if ($amount < $this->commission_min_legal) {
-            return $this->commission_min_legal;
+        if ($amount < self::COMMISSION_MIN_LEGAL) {
+            return self::COMMISSION_MIN_LEGAL;
         }
 
         return $amount;
