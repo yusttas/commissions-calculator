@@ -7,7 +7,6 @@ use Paysera\Entities\Operation;
 
 class CashInStrategy implements CommissionCalculatorStrategy
 {
-
     protected $operation;
 
     public $commission_percent = 0.03;
