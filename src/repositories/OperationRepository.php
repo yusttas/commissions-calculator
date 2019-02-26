@@ -2,7 +2,7 @@
 
 namespace Paysera\Repositories;
 
-interface Repository
+interface OperationRepository
 {
     public function getAll(): array;
 }
