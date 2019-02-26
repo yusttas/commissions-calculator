@@ -5,7 +5,7 @@ namespace Paysera\Repositories;
 use Paysera\Entities\Operation;
 use Paysera\Persistance\Persistance;
 
-class InMemoryOperationRepository implements Repository
+class InMemoryOperationRepository implements OperationRepository
 {
     private $persistance;
 
