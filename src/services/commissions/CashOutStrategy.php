@@ -81,12 +81,12 @@ class CashOutStrategy implements CommissionCalculatorStrategy
 
     protected function calculateForLegalPerson(): float
     {
-        $amount = $this->operation->getAmount() * self::COMMISSION_PERCENT / 100;
+        $commission = $this->operation->getAmount() * self::COMMISSION_PERCENT / 100;
 
-        if ($amount < self::COMMISSION_MIN_LEGAL) {
+        if ($commission < self::COMMISSION_MIN_LEGAL) {
             return self::COMMISSION_MIN_LEGAL;
         }
 
-        return $amount;
+        return $commission;
     }
 }

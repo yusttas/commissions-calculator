@@ -19,12 +19,12 @@ class CashInStrategy implements CommissionCalculatorStrategy
 
     public function calculate():float
     {
-        $amount = $this->operation->getAmount() * self::COMMISSION_PERCENT / 100;
+        $commission = $this->operation->getAmount() * self::COMMISSION_PERCENT / 100;
 
-        if ($amount > self::COMMISSION_MAX) {
+        if ($commission > self::COMMISSION_MAX) {
             return self::COMMISSION_MAX;
         }
 
-        return $amount;
+        return $commission;
     }
 }
