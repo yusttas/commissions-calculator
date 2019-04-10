@@ -30,10 +30,10 @@ class InMemoryOperationRepository implements OperationRepository
 
             $operation_date = new \DateTime($operation->getDate());
             $operation_week = $operation_date->format('W');
-
+           
             if ($operation->getPersonId() == $person_id && $operation->getName() == Operation::CASH_OUT) {
 
-                if ($current_week == $operation_week) {
+                if ($current_week == $operation_week && abs($current_date->diff($operation_date)->format('%R%a'))<=7) {
                     $operations[] = $operation;
                 } else if ($current_week < $operation_week) {
                     break;
