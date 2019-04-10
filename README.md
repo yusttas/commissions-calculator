@@ -1,6 +1,5 @@
 # Reikalavimai
 
-- laikui griežtų apribojimų nėra, tačiau neprarandam ryšio - jei susidursi su problemomis ar nerasi laisvo laiko, susisiek
 - užduotis turi būti atlikta PHP kalba, versiją pasirink laisvai
 - galima naudoti išorines priklausomybes, įrankius, karkasus, jei tai atrodo reikalinga. Rekomenduojame naudoti `composer` net jei nesinaudosi išorinėmis bibliotekomis dėl autoloading'o - rekomenduojame naudoti PSR-4 standartą
 - sistema turėtų būti palaikoma:
