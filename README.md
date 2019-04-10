@@ -113,11 +113,3 @@ Rezultatas - paskaičiuoti komisiniai mokesčiai kiekvienai operacijai. Kiekvien
 8612
 ```
 
-# Vertinimas
-
-- ar teisingai įgyvendinti visi reikalavimai
-- kodo kokybė - ar jis palaikomas, plečiamas, testuojamas; mažiau dėmesio skiriama, tačiau gali būti atsižvelgiama ir į sistemos greitaveiką
-
-# Užduoties pateikimas
-
-Jei patogu, kodą gali versijuoti ir/ar talpinti viešai (pvz. GitHub), tačiau paprašysime galutinį *source code* pateikti `zip` archyve, atsiunčiant el. paštu code@paysera.lt. Tiesa, jei talpinsi viešai, nenaudok "Paysera" vardo - tai padeda kitiems surasti bibliotekas, kurios iš tiesų siejasi su mūsų paslaugomis ar yra mūsų palaikomos.
