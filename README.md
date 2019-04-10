@@ -1,15 +1,37 @@
-Užduotis
-Situacija
+# Reikalavimai
+
+- laikui griežtų apribojimų nėra, tačiau neprarandam ryšio - jei susidursi su problemomis ar nerasi laisvo laiko, susisiek
+- užduotis turi būti atlikta PHP kalba, versiją pasirink laisvai
+- galima naudoti išorines priklausomybes, įrankius, karkasus, jei tai atrodo reikalinga. Rekomenduojame naudoti `composer` net jei nesinaudosi išorinėmis bibliotekomis dėl autoloading'o - rekomenduojame naudoti PSR-4 standartą
+- sistema turėtų būti palaikoma:
+  - aiškios priklausomybės tarp kodo dalių
+  - sistema testuojama ir ištestuota
+  - kodas suprantamas, paprastas
+- sistema turi būti plečiama:
+  - naujo funkcionalumo pridėjimui ar egzistuojančio keitimui neturėtų reikti perrašyti visos sistemos
+- kodas turėtų atitikti PSR-1 ir PSR-2
+- turėtų būti pateikiama minimali dokumentacija:
+  - kaip paleisti sistemą (kokią komandą vykdyti)
+  - kaip paleisti sistemos testus (kokią komandą vykdyti)
+  - funkcionalumo trumpas aprašymas mažiau aiškiose vietose gali būti pačiame kode
+
+# Užduotis
+## Situacija
+
 Paysera naudotojai gali ateiti į skyrių įnešti bei išsigryninti pinigų. Palaikomos kelios valiutos. Taip pat taikomi tam tikri komisiniai mokesčiai tiek už pinigų įnešimą, tiek ir už išgryninimą.
 
-Komisiniai mokesčiai
-Pinigų įnešimas
+## Komisiniai mokesčiai
+
+### Pinigų įnešimas
+
 Komisinis mokestis - 0.03% nuo sumos, ne daugiau 5.00 EUR.
 
-Pinigų išgryninimas
+### Pinigų išgryninimas
+
 Taikomi skirtingi komisiniai mokesčiai fiziniams ir juridiniams asmenims.
 
-Fiziniams asmenims
+#### Fiziniams asmenims
+
 Įprastas komisinis - 0.3 % nuo sumos.
 
 1000.00 EUR per savaitę (nuo pirmadienio iki sekmadienio) galima išsiimti nemokamai.
@@ -18,41 +40,49 @@ Jei suma viršijama - komisinis skaičiuojamas tik nuo viršytos sumos (t.y. vis
 
 Ši nuolaida taikoma tik pirmoms 3 išėmimo operacijoms per savaitę - jei išsiimama 4-tą ir paskesnius kartus, komisinis toms operacijoms skaičiuojamas įprastai - taisyklė dėl 1000 EUR galioja tik pirmiesiems trims išgryninimams.
 
-Juridiniams asmenims
+#### Juridiniams asmenims
+
 Komisinis mokestis - 0.3% nuo sumos, bet ne mažiau nei 0.50 EUR.
 
-Komisinio mokesčio valiuta
-Komisinis mokestis visuomet skaičiuojamas ta valiuta, kuria atliekama operacija (pvz. išsiimant USD, komisinis taip pat būna USD valiuta).
+### Komisinio mokesčio valiuta
 
-Apvalinimas
-Paskaičiavus komisinį mokestį, jis apvalinamas mažiausio valiutos vieneto (pvz. EUR valiutai - centų) tikslumu į didžiąją pusę (0.023 EUR apvalinasi į 3 Euro centus).
+Komisinis mokestis visuomet skaičiuojamas ta valiuta, kuria atliekama operacija (pvz. išsiimant `USD`, komisinis taip pat būna `USD` valiuta).
+
+### Apvalinimas
+
+Paskaičiavus komisinį mokestį, jis apvalinamas mažiausio valiutos vieneto (pvz. `EUR` valiutai - centų) tikslumu į didžiąją pusę (`0.023 EUR` apvalinasi į `3` Euro centus).
 
 Apvalinimas atliekamas jau po konvertavimo.
 
-Palaikomos valiutos
-Palaikomos 3 valiutos: EUR, USD ir JPY.
+## Palaikomos valiutos
 
-Konvertuojant valiutas, taikomi tokie konvertavimo kursai: EUR:USD - 1:1.1497, EUR:JPY - 1:129.53
+Palaikomos 3 valiutos: `EUR`, `USD` ir `JPY`.
 
-Įeities duomenys
+Konvertuojant valiutas, taikomi tokie konvertavimo kursai: `EUR:USD` - `1:1.1497`, `EUR:JPY` - `1:129.53`
+
+## Įeities duomenys
+
 Įeities duomenys pateikiami CSV faile. Faile nurodomos vykdytos operacijos. Kiekvienoje eilutėje nurodomi tokie duomenys:
+- operacijos data, formatas `Y-m-d`
+- naudotojo identifikatorius, skaičius
+- naudotojo tipas, vienas iš `natural` (fizinis asmuo) arba `legal` (juridinis asmuo)
+- operacijos tipas, vienas iš `cash_in` (įnešimas) arba `cash_out` (išgryninimas)
+- operacijos suma (pvz. `2.12` ar `3`)
+- operacijos valiuta, vienas iš `EUR`, `USD`, `JPY`
 
-operacijos data, formatas Y-m-d
-naudotojo identifikatorius, skaičius
-naudotojo tipas, vienas iš natural (fizinis asmuo) arba legal (juridinis asmuo)
-operacijos tipas, vienas iš cash_in (įnešimas) arba cash_out (išgryninimas)
-operacijos suma (pvz. 2.12 ar 3)
-operacijos valiuta, vienas iš EUR, USD, JPY
 Visos operacijos išrikiuotos jų atlikimo tvarka, tačiau gali apimti kelių metų intervalą.
 
-Laukiamas rezultatas
+## Laukiamas rezultatas
+
 Programa turi kaip vienintelį argumentą priimti kelią iki įeities duomenų failo.
 
-Programa rezultatą turi pateikti į stdout.
+Programa rezultatą turi pateikti į `stdout`.
 
 Rezultatas - paskaičiuoti komisiniai mokesčiai kiekvienai operacijai. Kiekvienoje eilutėje reikia pateikti tik galutinę komisinio mokesčio sumą be valiutos.
 
-Pavyzdiniai duomenys
+# Pavyzdiniai duomenys
+
+```
 ➜  cat input.csv 
 2014-12-31,4,natural,cash_out,1200.00,EUR
 2015-01-01,4,natural,cash_out,1000.00,EUR
@@ -81,3 +111,13 @@ Pavyzdiniai duomenys
 0.00
 0.00
 8612
+```
+
+# Vertinimas
+
+- ar teisingai įgyvendinti visi reikalavimai
+- kodo kokybė - ar jis palaikomas, plečiamas, testuojamas; mažiau dėmesio skiriama, tačiau gali būti atsižvelgiama ir į sistemos greitaveiką
+
+# Užduoties pateikimas
+
+Jei patogu, kodą gali versijuoti ir/ar talpinti viešai (pvz. GitHub), tačiau paprašysime galutinį *source code* pateikti `zip` archyve, atsiunčiant el. paštu code@paysera.lt. Tiesa, jei talpinsi viešai, nenaudok "Paysera" vardo - tai padeda kitiems surasti bibliotekas, kurios iš tiesų siejasi su mūsų paslaugomis ar yra mūsų palaikomos.
