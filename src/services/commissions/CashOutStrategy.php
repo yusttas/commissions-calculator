@@ -70,6 +70,8 @@ class CashOutStrategy implements CommissionCalculatorStrategy
                 $current_amount = 0;
             }
 
+        } else{
+            $current_amount = 0;
         }
 
         $commission = $current_amount * self::COMMISSION_PERCENT / 100;
