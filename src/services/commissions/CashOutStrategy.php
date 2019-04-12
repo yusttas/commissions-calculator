@@ -15,6 +15,8 @@ class CashOutStrategy extends CommissionStrategy implements CommissionCalculator
     const TIMES_PER_WEEK = 3;
     const AMOUNT_PER_WEEK = 1000;
 
+    private $repository;
+
     public function __construct(Operation $operation, OperationRepository $repository)
     {
         parent::__construct($operation);
