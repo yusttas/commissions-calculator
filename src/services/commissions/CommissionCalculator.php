@@ -17,7 +17,7 @@ class CommissionCalculator
         $this->repository = $repository;
     }
 
-    protected function getStrategy(Operation $operation): CommissionCalculatorStrategy
+    protected function getStrategy(Operation $operation): CommissionStrategy
     {
         $operation_name = $operation->getName();
 
