@@ -12,11 +12,6 @@ class CashInStrategy extends CommissionStrategy implements CommissionCalculatorS
     const COMMISSION_PERCENT = 0.03;
     const COMMISSION_MAX = 5;
 
-    public function __construct(Operation $operation, OperationRepository $repository)
-    {
-        $this->operation = $operation;
-    }
-
     public function calculate():float
     {
         $commission = $this->operation->getAmount() * self::COMMISSION_PERCENT / 100;
