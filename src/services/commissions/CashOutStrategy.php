@@ -10,9 +10,6 @@ use Paysera\Services\CurrencyConverter;
 
 class CashOutStrategy extends CommissionStrategy implements CommissionCalculatorStrategy
 {
-    protected $operation;
-    protected $repository;
-
     const COMMISSION_PERCENT = 0.3;
     const COMMISSION_MIN_LEGAL = 0.50;
     const TIMES_PER_WEEK = 3;
@@ -20,7 +17,7 @@ class CashOutStrategy extends CommissionStrategy implements CommissionCalculator
 
     public function __construct(Operation $operation, OperationRepository $repository)
     {
-        $this->operation = $operation;
+        parent::__construct($operation);
         $this->repository = $repository;
     }
 
