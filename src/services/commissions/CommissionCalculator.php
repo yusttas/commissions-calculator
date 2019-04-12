@@ -1,6 +1,6 @@
 <?php
 
-namespace Paysera\Services;
+namespace Paysera\Services\Commissions;
 
 use Paysera\Entities\Operation;
 use Paysera\Repositories\OperationRepository;
