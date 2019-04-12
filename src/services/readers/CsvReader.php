@@ -40,7 +40,7 @@ class CsvReader implements Reader
                 $num = count($data);
                 $row++;
                 for ($c = 0; $c < $num; $c++) {
-                    $results[] = explode(',', $data[$c]);
+                    $results[] = explode($this->delimeter, $data[$c]);
                 }
             }
             fclose($handle);
