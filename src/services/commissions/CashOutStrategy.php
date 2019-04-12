@@ -5,6 +5,7 @@ namespace Paysera\Services\Commissions;
 use Paysera\Entities\Operation;
 use Paysera\Repositories\OperationRepository;
 use Paysera\Services\Commissions\CommissionCalculatorStrategy;
+use Paysera\Services\Commissions\CommissionStrategy;
 use Paysera\Services\CurrencyConverter;
 
 class CashOutStrategy extends CommissionStrategy implements CommissionCalculatorStrategy
@@ -36,7 +37,7 @@ class CashOutStrategy extends CommissionStrategy implements CommissionCalculator
         return (float) $commission;
     }
 
-    protected function calculateForNaturalPerson():float
+    protected function calculateForNaturalPerson(): float
     {
         $id = $this->operation->getId();
         $person_id = $this->operation->getPersonId();
@@ -70,7 +71,7 @@ class CashOutStrategy extends CommissionStrategy implements CommissionCalculator
                 $current_amount = 0;
             }
 
-        } else{
+        } else {
             $current_amount = 0;
         }
 

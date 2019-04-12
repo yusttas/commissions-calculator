@@ -2,8 +2,8 @@
 
 namespace Paysera\Services\Commissions;
 
-use Paysera\Repositories\OperationRepository;
 use Paysera\Entities\Operation;
+use Paysera\Services\Commissions\CommissionStrategy;
 
 class CashInStrategy extends CommissionStrategy implements CommissionCalculatorStrategy
 {
@@ -12,7 +12,7 @@ class CashInStrategy extends CommissionStrategy implements CommissionCalculatorS
     const COMMISSION_PERCENT = 0.03;
     const COMMISSION_MAX = 5;
 
-    public function calculate():float
+    public function calculate(): float
     {
         $commission = $this->operation->getAmount() * self::COMMISSION_PERCENT / 100;
 
