@@ -7,7 +7,7 @@ use Paysera\Repositories\OperationRepository;
 use Paysera\Services\Commissions\CommissionCalculatorStrategy;
 use Paysera\Services\CurrencyConverter;
 
-class CashOutStrategy implements CommissionCalculatorStrategy
+class CashOutStrategy extends CommissionStrategy implements CommissionCalculatorStrategy
 {
     protected $operation;
     protected $repository;
