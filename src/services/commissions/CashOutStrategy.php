@@ -4,11 +4,10 @@ namespace Paysera\Services\Commissions;
 
 use Paysera\Entities\Operation;
 use Paysera\Repositories\OperationRepository;
-use Paysera\Services\Commissions\CommissionCalculatorStrategy;
 use Paysera\Services\Commissions\CommissionStrategy;
 use Paysera\Services\CurrencyConverter;
 
-class CashOutStrategy extends CommissionStrategy implements CommissionCalculatorStrategy
+class CashOutStrategy extends CommissionStrategy
 {
     const COMMISSION_PERCENT = 0.3;
     const COMMISSION_MIN_LEGAL = 0.50;

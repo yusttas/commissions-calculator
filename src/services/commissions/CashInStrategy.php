@@ -5,7 +5,7 @@ namespace Paysera\Services\Commissions;
 use Paysera\Entities\Operation;
 use Paysera\Services\Commissions\CommissionStrategy;
 
-class CashInStrategy extends CommissionStrategy implements CommissionCalculatorStrategy
+class CashInStrategy extends CommissionStrategy
 {
     protected $operation;
 

@@ -6,7 +6,6 @@ use Paysera\Entities\Operation;
 use Paysera\Repositories\OperationRepository;
 use Paysera\Services\Commissions\CashInStrategy;
 use Paysera\Services\Commissions\CashOutStrategy;
-use Paysera\Services\Commissions\CommissionCalculatorStrategy;
 
 class CommissionCalculator
 {
