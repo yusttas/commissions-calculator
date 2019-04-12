@@ -12,4 +12,6 @@ abstract class CommissionStrategy
     {
         $this->operation = $operation;
     }
+
+    abstract public function calculate();
 }
