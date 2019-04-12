@@ -3,7 +3,6 @@
 require_once 'vendor/autoload.php';
 
 use Paysera\Entities\Operation;
-use Paysera\Persistance\InMemoryPersistance;
 use Paysera\Repositories\InMemoryOperationRepository as OperationRepository;
 use Paysera\Services\Commissions\CommissionCalculator;
 use Paysera\Services\Readers\CsvReader;
